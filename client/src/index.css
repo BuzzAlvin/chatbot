@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: var(--color-primary);
+    --color-secondary: var(--color-secondary);
+    --color-tetiary: var(--color-tetiary);
+    --font-primary: var(--font-primary);
+    --font-secondary: var(--font-secondary);
+    --font-typing: var(--font-typing);
+}
+
+:root {
+    --color-primary: #72050A;
+    --color-secondary: #962B36;
+    --color-tetiary: #D84C4C;
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Port Lligat Sans', sans-serif;
+    --font-typing: 'Solitreo', cursive;
+}
