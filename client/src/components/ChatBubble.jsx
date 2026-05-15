@@ -36,7 +36,7 @@ const ChatBubble = ({ message, isUser }) => {
           </div>
         ) : (
           <>
-            <p className="whitespace-pre-line break-words">
+            <p className="whitespace-pre-line wrap-break-words">
               {message.text.split(" ").map((word, index) => {
                 const isLink =
                   word.startsWith("http://") || word.startsWith("https://");

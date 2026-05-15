@@ -87,7 +87,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/chat", {
+      const res = await fetch("https://irs-chatbot.onrender.com/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
