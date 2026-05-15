@@ -29,7 +29,7 @@ const Chat = () => {
     const loadGreeting = async () => {
       if (isMobile === null) return;
 
-      const res = await fetch("http://localhost:3000/api/chat", {
+      const res = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -87,7 +87,8 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("https://irs-chatbot.onrender.com/api/chat", {
+      const API_URL = import.meta.env.VITE_API_URL; 
+      const res = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
