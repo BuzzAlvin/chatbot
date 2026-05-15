@@ -63,15 +63,15 @@ const Mobile = ({
         <FiArrowLeft onClick={() => navigate("/")} />
         <div className="flex items-center">
           <Avatar />
-          <span className="flex flex-col ml-2">
-            <p className="text-xs sm:text-base font-medium ">OIRS Assistant</p>
+          <div className="flex flex-col ml-2">
+            <p className="text-sm sm:text-base font-medium ">OIRS Assistant</p>
             <span className="flex items-center text-[10px] sm:text-sm tracking-tight">
               <p className="text-green-400 rounded-full">
                 <GoDotFill />
               </p>
               online
             </span>
-          </span>
+          </div>
         </div>
       </div>
 
@@ -132,7 +132,7 @@ const Mobile = ({
         />
         <button
           onClick={handleSend}
-          className="absolute right-5.5 bottom-3.5 bg-primary text-gray-300 p-2 rounded-full"
+          className="absolute right-5.5 bottom-4.5 bg-primary text-gray-300 p-2 rounded-full"
         >
           <IoPaperPlane className="text-base" />
         </button>

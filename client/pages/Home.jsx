@@ -38,13 +38,13 @@ const Home = () => {
       <div className="flex flex-col items-center justify-center font-primary mt-4">
         <img src="/illustration.png" alt="OIRS Assistant" className="w-30"/>
         <p className="font-semibold text-primary text-base sm:text-lg">Welcome to OIRS Assistant</p>
-        <p className="text-sm sm:text-base w-full text-center text-gray-800">
+        <p className="text-sm sm:text-base w-full max-w-[350px] text-center text-gray-800">
           Your official AI assistant for all your tax-related informations and
           services
         </p>
       </div>
       {/* Features */}
-      <div className="flex flex-col gap-3 my-4 px-2 sm:px-4">
+      <div className="flex flex-col gap-3 my-4 px-4 sm:px-3">
         {features.map((item, index) => (
             <span 
             key={index} 
@@ -55,7 +55,7 @@ const Home = () => {
         ))}
       </div>
         {/* Footer/ Button */}
-      <div className="flex flex-col items-center px-2 sm:px-4">
+      <div className="flex flex-col items-center px-4 sm:px-3">
         <button 
         onClick={() => navigate("/chat")}
         className="flex items-center justify-center gap-2.5 text-sm sm:text-base w-full bg-primary text-gray-200 px-2 py-3 rounded-full mb-2.5">
