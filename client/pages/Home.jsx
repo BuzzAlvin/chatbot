@@ -58,7 +58,7 @@ const Home = () => {
       <div className="flex flex-col items-center px-2 sm:px-4">
         <button 
         onClick={() => navigate("/chat")}
-        className="flex items-center justify-center gap-2.5 text-sm sm:text-base w-full bg-primary text-gray-200 p-2 rounded-full mb-2.5">
+        className="flex items-center justify-center gap-2.5 text-sm sm:text-base w-full bg-primary text-gray-200 px-2 py-3 rounded-full mb-2.5">
           <FiMessageCircle className="text-base sm:text-lg"/>
           Start Chat
           <FiArrowRight className="text-base sm:text-lg" />

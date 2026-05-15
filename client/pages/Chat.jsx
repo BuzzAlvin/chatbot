@@ -4,6 +4,7 @@ import Mobile from "../src/components/Mobile";
 import Desktop from "../src/components/Desktop";
 
 const Chat = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   //ismobile hooks
   const isMobile = useIsMobile();
 
@@ -87,7 +88,6 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL; 
       const res = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: {
