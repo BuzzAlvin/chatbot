@@ -26,9 +26,9 @@ const Home = () => {
   return (
     <div className="bg-gray-100 flex flex-col justify-between px-2 sm:px-4 py-2 h-dvh">
         {/* Header */}
-      <div className="flex items-center justify-between gap-8 w-full px-4">
+      <div className="flex items-center justify-between gap-8 w-full px-8">
         <img src="/OIRS LOGO.png" alt="Oirs logo" className="w-20"/>
-        <div className="flex flex-col items-center justify-center font-primary text-center">
+        <div className="flex flex-col items-center justify-center font-primary text-center max-w-37.5">
           <h1 className="text-primary font-extrabold text-base sm:text-lg [text-shadow:0_2px_3px_rgba(0,0,0,0.3),0_6px_10px_rgba(0,0,0,0.2)]">OIRS</h1>
           <p className="font-medium text-primary text-xs sm:text-sm tracking-tight leading-tight [text-shadow:0_4px_6px_rgba(0,0,0,0.2)]">OSUN INTERNAL REVENUE SERVICE</p>
         </div>
@@ -38,13 +38,13 @@ const Home = () => {
       <div className="flex flex-col items-center justify-center font-primary mt-4">
         <img src="/illustration.png" alt="OIRS Assistant" className="w-30"/>
         <p className="font-semibold text-primary text-base sm:text-lg">Welcome to OIRS Assistant</p>
-        <p className="text-sm sm:text-base w-full max-w-[350px] text-center text-gray-800">
+        <p className="text-sm sm:text-base w-full max-w-87.5 text-center text-gray-800">
           Your official AI assistant for all your tax-related informations and
           services
         </p>
       </div>
       {/* Features */}
-      <div className="flex flex-col gap-3 my-4 px-4 sm:px-3">
+      <div className="flex flex-col gap-3 my-4 px-8 sm:px-4">
         {features.map((item, index) => (
             <span 
             key={index} 
@@ -55,7 +55,7 @@ const Home = () => {
         ))}
       </div>
         {/* Footer/ Button */}
-      <div className="flex flex-col items-center px-4 sm:px-3">
+      <div className="flex flex-col items-center px-8 sm:px-4">
         <button 
         onClick={() => navigate("/chat")}
         className="flex items-center justify-center gap-2.5 text-sm sm:text-base w-full bg-primary text-gray-200 px-2 py-3 rounded-full mb-2.5">
