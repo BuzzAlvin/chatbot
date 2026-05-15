@@ -128,7 +128,7 @@ const Mobile = ({
               handleSend();
             }
           }}
-          className="bg-gray-100 w-full text-sm font-typing py-3 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full"
+          className="bg-gray-100 w-full text-base font-typing py-3 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full"
         />
         <button
           onClick={handleSend}
