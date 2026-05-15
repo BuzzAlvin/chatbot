@@ -119,7 +119,7 @@ const Mobile = ({
       <div className="px-4 py-2 mb-2 relative">
         <input
           type="text"
-          placeholder="Type your message.."
+          placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => {
@@ -128,13 +128,13 @@ const Mobile = ({
               handleSend();
             }
           }}
-          className="bg-gray-100 w-full text-xs font-typing py-2 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full"
+          className="bg-gray-100 w-full text-sm font-typing py-3 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full"
         />
         <button
           onClick={handleSend}
-          className="absolute right-5.5 bottom-3.5 bg-primary text-gray-300 p-1 rounded-full"
+          className="absolute right-5.5 bottom-3.5 bg-primary text-gray-300 p-2 rounded-full"
         >
-          <IoPaperPlane className="text-sm" />
+          <IoPaperPlane className="text-base" />
         </button>
       </div>
 
