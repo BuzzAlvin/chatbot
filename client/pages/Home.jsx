@@ -36,7 +36,7 @@ const Home = () => {
 
       {/* Middle */}
       <div className="flex flex-col items-center justify-center font-primary mt-4">
-        <img src="/public/illustration.png" alt="OIRS Assistant" className="w-30"/>
+        <img src="/illustration.png" alt="OIRS Assistant" className="w-30"/>
         <p className="font-semibold text-primary text-base sm:text-lg">Welcome to OIRS Assistant</p>
         <p className="text-sm sm:text-base w-full text-center text-gray-800">
           Your official AI assistant for all your tax-related informations and
