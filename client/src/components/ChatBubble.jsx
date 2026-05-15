@@ -30,7 +30,7 @@ const ChatBubble = ({ message, isUser }) => {
       >
         {isTyping ? (
           <div className="flex items-start gap-2">
-            <div className="bg-white text-gray-500 py-2 px-3 rounded-xl text-xs animate-pulse">
+            <div className="bg-white text-gray-500 py-2 px-3 rounded-xl text-xs sm:text-sm animate-pulse">
               Bot is typing...
             </div>
           </div>
@@ -57,7 +57,7 @@ const ChatBubble = ({ message, isUser }) => {
               })}
             </p>
             <p
-              className={`text-[8px] sm:text-xs text-gray-800  mt-1.5 text-end`}
+              className={`text-xs sm:text-sm text-gray-800 mt-1.5 text-end`}
             >
               {message.timestamp}
             </p>
