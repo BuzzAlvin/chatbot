@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import Avatar from "./Avatar";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const ChatBubble = ({ message, isUser }) => {
   const isTyping = message.loading;
@@ -36,26 +38,11 @@ const ChatBubble = ({ message, isUser }) => {
           </div>
         ) : (
           <>
-            <p className="whitespace-pre-line wrap-break-words">
-              {message.text.split(" ").map((word, index) => {
-                const isLink =
-                  word.startsWith("http://") || word.startsWith("https://");
-
-                return isLink ? (
-                  <a
-                    key={index}
-                    href={word}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline break-all"
-                  >
-                    {word}{" "}
-                  </a>
-                ) : (
-                  word + " "
-                );
-              })}
-            </p>
+            <div className="whitespace-pre-line wrap-break-words">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {message.text}
+              </ReactMarkdown>
+            </div>
             <p
               className={`text-xs sm:text-sm text-gray-800 mt-1.5 text-end`}
             >
