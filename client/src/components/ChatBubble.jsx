@@ -39,13 +39,25 @@ const ChatBubble = ({ message, isUser }) => {
         ) : (
           <>
             <div className="whitespace-pre-line wrap-break-words">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 underline break-all"
+                    >
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
                 {message.text}
               </ReactMarkdown>
             </div>
-            <p
-              className={`text-xs sm:text-sm text-gray-800 mt-1.5 text-end`}
-            >
+            <p className={`text-xs sm:text-sm text-gray-800 mt-1.5 text-end`}>
               {message.timestamp}
             </p>
           </>
