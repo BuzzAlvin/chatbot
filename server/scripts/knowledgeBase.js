@@ -17,11 +17,12 @@ const seed = async () => {
       }
 
       // Insert into Supabase
-      const { error } = await db.from("knowledge_base").insert({
+      const { error } = await db.from("knowledge_base").upsert({
         question: item.question,
         answer: item.answer,
         embedding,
-      });
+        
+      }, { onConflict: "question",});
 
       // Handle insert errors
       if (error) {

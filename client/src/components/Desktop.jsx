@@ -160,7 +160,7 @@ const Desktop = ({
                 className="bg-white w-full md:text-xs lg:text-sm font-typing py-2 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full shadow-[0_4px_10px_rgba(0,0,0,0.05)]"
               />
               <button
-                onClick={handleSend}
+                onClick={() => handleSend()}
                 className="bg-primary text-gray-300 p-1.5 rounded-full cursor-pointer"
               >
                 <IoPaperPlane className="md:text-sm lg:text-base" />

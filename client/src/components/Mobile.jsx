@@ -131,8 +131,9 @@ const Mobile = ({
           className="bg-gray-100 w-full text-base font-typing py-3 pl-2 pr-9 border border-gray-200 outline-none focus:ring-1 focus:ring-primary rounded-full"
         />
         <button
-          onClick={handleSend}
-          className="absolute right-5.5 bottom-4.5 bg-primary text-gray-300 p-2 rounded-full"
+          onClick={() => handleSend()}
+          type="button"
+          className="absolute right-[25px] bottom-[17px] bg-primary text-gray-300 p-2 rounded-full z-10"
         >
           <IoPaperPlane className="text-base" />
         </button>
