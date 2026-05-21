@@ -80,6 +80,12 @@ ${knowledgeContext}
     return cleanText;
   } catch (error) {
     console.error("Gemini Error:", error);
+
+     if (error.status === 429) {
+    throw new Error(
+      "Our AI assistant is currently receiving too many requests. Please try again shortly."
+    );
+  }
     throw new Error("Unable to connect to AI service.");
   }
 };

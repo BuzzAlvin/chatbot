@@ -11,34 +11,72 @@ export const sendMessage = async (req, res) => {
   try {
     const { message, history, isGreeting } = req.body;
 
-    // greeting request for user on page load
+    // Greeting request
     if (isGreeting) {
       const greeting = await getOrCreateGreeting();
 
-      return res.json({ reply: greeting });
+      return res.json({
+        reply: greeting,
+      });
     }
 
-    // Check cache BEFORE doing database vector searches
+    // Check cache first
     const cached = getCachedResponse(message);
+
     if (cached) {
-      console.log("Cache hit! Bypassing Supabase and Gemini entirely.");
-      return res.json({ reply: cached });
+      console.log("Cache hit!");
+
+      return res.json({
+        reply: cached,
+      });
     }
 
-    //semantic vector search
-    const relevantKnowledge = await findRelevantKnowledge(message);
+    // Semantic search
+    const relevantKnowledge =
+      await findRelevantKnowledge(message);
 
-    console.log("Relevant Knowledge:", relevantKnowledge);
-    
-    //AI response
-    const reply = await askGemini(message, history, relevantKnowledge);
 
-    // FIX: Save the fresh response into your cache for the next time!
-    if (reply) {
-      setCachedResponse(message, reply);
+
+    const bestMatch = relevantKnowledge[0];
+
+    let reply = "";
+
+    // VERY STRONG MATCH
+    // Return DB answer directly
+    if (
+      bestMatch &&
+      bestMatch.similarity >= 0.6
+    ) {
+      reply = bestMatch.answer;
     }
 
-    // save user and bot conversation
+    // MEDIUM MATCH
+    // Use Gemini + KB context
+    else if (
+      bestMatch &&
+      bestMatch.similarity >= 0.4
+    ) {
+      reply = await askGemini(
+        message,
+        history,
+        relevantKnowledge
+      );
+    }
+
+    // LOW MATCH
+    // Full Gemini fallback
+    else {
+      reply = await askGemini(
+        message,
+        history,
+        []
+      );
+    }
+
+    // Save response in cache
+    setCachedResponse(message, reply);
+
+    // Save conversation
     await db.from("conversations").insert([
       {
         user_text: message,
@@ -46,14 +84,27 @@ export const sendMessage = async (req, res) => {
       },
     ]);
 
-    return res.json({ reply });
+        console.log(
+      "Relevant Knowledge:",
+      relevantKnowledge
+    );
+
+        console.log(
+      "SIMILARITY:",
+      bestMatch?.similarity
+    );
+
+    return res.json({
+      reply,
+    });
+
   } catch (error) {
     console.log("server error:", error);
 
     return res.status(500).json({
-    error: true,
-    reply:
-      "⚠️ Unable to connect. Please check your internet connection or try again shortly.",
-  });
+      error: true,
+      reply:
+        "⚠️  Our assistant is temporarily unavailable. Please try again shortly.",
+    });
   }
 };

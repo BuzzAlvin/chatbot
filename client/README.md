@@ -1,6 +1,6 @@
 # 🧠 OIRS AI Chatbot
 
-An AI-powered assistant for the Osun Internal Revenue Service (OIRS) designed to help users with tax-related inquiries, payments, compliance guidance, and general support.
+An Hybrid AI + Semantic Search Tax Assistant for the Osun Internal Revenue Service (OIRS) designed to help users with tax-related inquiries, payments, compliance guidance, and general support.
 
 ---
 
@@ -10,30 +10,63 @@ An AI-powered assistant for the Osun Internal Revenue Service (OIRS) designed to
 
 ## 🚀 Features
 
-- AI-powered tax assistance using Google Gemini
-- Context-aware responses using knowledge base (RAG-style)
-- Quick action prompts for common user queries
-- Mobile & desktop responsive UI
-- Real-time chat experience
-- Bot typing indicators
-- Secure backend-controlled AI logic
-- Semantic search support (embeddings-ready architecture)
+- AI-powered tax assistant for OIRS
+- Semantic search using vector embeddings
+- Hybrid RAG architecture
+- Supabase vector database integration
+- Intelligent AI fallback system
+- Context-aware chat memory
+- Response caching for faster replies
+- Mobile-responsive chat interface
+- Quick action prompts
+- Real-time typing indicators
+- Markdown link rendering
+
+---
+
+## Architecture
+
+The chatbot uses a hybrid Retrieval-Augmented Generation (RAG) architecture:
+
+1. User messages are converted into embeddings using Gemini Embedding API.
+2. Semantic vector search is performed in Supabase.
+3. If a strong knowledge-base match is found, the chatbot returns the verified database response directly.
+4. If the match confidence is moderate, Gemini AI enhances the response using retrieved context.
+5. If no strong match exists, Gemini generates a fallback conversational response.
+
+This approach improves:
+- response speed
+- reliability
+- AI cost efficiency
+- factual accuracy
 
 ---
 
 ## 🏗️ Tech Stack
 
 ### Frontend
-- React.js
+- React
+- Vite
 - Tailwind CSS
 - Framer Motion
-- React Router
 
 ### Backend
 - Node.js
 - Express.js
-- Google Gemini API (@google/genai)
-- Semantic search (embeddings layer optional)
+
+### AI & Search
+- Google Gemini API
+- Gemini Embeddings
+- Semantic Search
+- Vector Similarity Search
+
+### Database
+- Supabase
+- pgvector
+
+### Deployment
+- cloudflare
+- Render
 
 ---
 
@@ -52,14 +85,16 @@ This project follows strict server-side AI control principles:
 
 ## 💬 Chat Flow
 
-1. User sends message from frontend
-2. Request goes to `/api/chat`
-3. Backend:
-   - Retrieves relevant knowledge base entries
-   - Applies system rules (OIRS policy)
-   - Sends request to Gemini AI
-4. AI response is returned to frontend
-5. UI updates chat history
+1. User sends a message from the frontend
+2. Request is sent to `/api/chat`
+3. Backend generates embeddings for the query
+4. Semantic vector search retrieves the most relevant knowledge base entries
+5. Backend evaluates similarity score:
+   - High-confidence match → direct verified database response
+   - Medium-confidence match → Gemini AI enhances retrieved context
+   - Low-confidence match → Gemini AI fallback response
+6. Response is returned to frontend
+7. UI updates chat history in real time
 
 ---
 
@@ -75,12 +110,19 @@ Quick actions provide guided prompts for users such as:
 
 ## 🧠 Knowledge Base System
 
-The chatbot uses a retrieval-augmented approach:
+The chatbot uses a hybrid retrieval-augmented generation (RAG) pipeline:
 
-- User query → semantic search
-- Top relevant Q&A retrieved
-- Injected into AI context
-- AI prioritizes verified responses
+- User query → embedding generation
+- Semantic vector search performed in Supabase
+- Most relevant Q&A entries retrieved
+- High-confidence matches returned directly from the verified database
+- Lower-confidence matches enhanced using Gemini AI context injection
+
+This architecture improves:
+- factual accuracy
+- response speed
+- quota efficiency
+- AI reliability
 
 ---
 
@@ -101,13 +143,21 @@ PORT=3000
 
 - POST /api/chat
 
+## Performance Optimizations
+
+- Cached repeated responses to reduce API calls
+- Direct database responses for high-confidence semantic matches
+- Reduced Gemini quota usage through hybrid retrieval architecture
+- Static greeting system to avoid unnecessary AI requests
+
 ## 📈 Future Improvements
-Redis caching layer for faster responses
-Advanced semantic search (vector DB upgrade)
-Streaming responses (ChatGPT-style typing)
-Admin dashboard for knowledge base updates
-Analytics & usage tracking
-Rate limiting & abuse protection
+
+- Admin dashboard for managing knowledge base
+- Voice input support
+- Multi-language support
+- Analytics dashboard
+- User authentication
+- Streaming AI responses
 
 ## 📷 Screenshots
 ![Desktop](public/chat_desktop.PNG)
